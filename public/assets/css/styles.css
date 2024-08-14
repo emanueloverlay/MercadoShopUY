@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+
+.select {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.select label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.select select {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.table {
+    width: 100%;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+.product-table thead tr {
+    background-color: #007acc;
+    color: #ffffff;
+    text-align: left;
+}
+
+.product-table th {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+}
+
+.product-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+}
+
+th:nth-child(1) {
+    max-width: 500px;
+}
+
+td:nth-child(1) {
+    text-align: left;
+    max-width: 500px;
+    word-wrap: break-word;
+}
+
+.product-table tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+
+.product-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.product-table img {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.action-btn {
+    background-color: #007acc;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background-color: #005f99;
+}

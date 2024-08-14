@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Shop UY</title>
+
+    <!-- Importación de estilos CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="assets/js/index.js"></script>
+</head>
+
+<body>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Sección para seleccionar una categoría -->
+        <div class="select">
+            <label for="category-select">Selecciona una categoría:</label>
+            <select id="category-select">
+                <option value="">--Selecciona una categoría--</option>
+            </select>
+        </div>
+
+        <!-- Tabla para mostrar la lista de productos -->
+        <div class="table">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Permalink</th>
+                        <th>Thumbnail</th>
+                        <th>Precio</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
