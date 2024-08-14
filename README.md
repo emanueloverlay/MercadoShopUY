@@ -32,7 +32,7 @@
     <li>Guardar los productos en la BD local haciendo clic en el botón <strong>Guardar en BD</strong>.</li>
 </ol>
 
-![imagen](https://github.com/user-attachments/assets/295e3193-16b7-4f0a-8697-6c951920067b)
+![imagen](https://github.com/user-attachments/assets/b5a4b040-eae0-41fb-a56a-bdc995d8156a)
 
 
 <h2>Estructura del Proyecto</h2>
