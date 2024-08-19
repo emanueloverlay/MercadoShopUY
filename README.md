@@ -29,10 +29,16 @@
 <ol>
     <li>Abrir la aplicación en un navegador.</li>
     <li>Seleccionar una categoría de productos del SELECT.</li>
+    <li>Utilizar el buscador para resultados más óptimos</li>
     <li>Guardar los productos en la BD local haciendo clic en el botón <strong>Guardar en BD</strong>.</li>
 </ol>
 
 ![imagen](https://github.com/user-attachments/assets/b5a4b040-eae0-41fb-a56a-bdc995d8156a)
+
+<h2>Log de actualizaciones</h2>
+<ul>
+    <li><b>Update 1.5 - Search feature</b> se incorpora un buscador para resultados óptimos.</li>
+</ul>
 
 
 <h2>Estructura del Proyecto</h2>
@@ -44,3 +50,5 @@
     <li><code>public/index.html</code> - Interfaz principal de la aplicación.</li>
     <li><code>MercadoShopUY.sql</code> - Script SQL para la creación de la BD y tabla necesaria.</li>
 </ul>
+
+

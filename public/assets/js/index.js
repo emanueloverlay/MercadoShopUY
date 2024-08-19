@@ -2,44 +2,72 @@ window.onload = () => {
 
     // Referencias a los elementos del DOM necesarios
     const categorySelect = document.getElementById('category-select');
-    const productListTBody = document.getElementById('product-list');
+    const inputSearch = document.getElementById('search-input');
+    let productListTBody = document.getElementById('product-list');
 
-    // Función para obtener la lista de categorías desde la API de MercadoLibre
-    async function categoryList() {
-        try {
-            const response = await fetch('https://api.mercadolibre.com/sites/MLU');
-            const data = await response.json();
-
-            // Recorre las categorías obtenidas y crea un elemento <option> para cada una
-            data.categories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category.id;
-                option.textContent = category.name;
-                document.getElementById('category-select').appendChild(option);
-            });
-        } catch (error) {
-            console.error('Error al cargar las categorías:', error);
-        }
-    };
 
     categoryList();
 
     // Evento change del menú desplegable que se ejecuta cuando el usuario selecciona una categoría
     categorySelect.addEventListener('change', function () {
         const categoryId = this.value;
-        loadProductList(categoryId);
+        loadProductList(categoryId, productListTBody);
     });
 
-    // Función para cargar la lista de productos desde la API de MercadoLibre para una categoría específica
-    async function loadProductList(categoryId) {
-        try {
-            const response = await fetch(`https://api.mercadolibre.com/sites/MLU/search?category=${categoryId}`);
-            const data = await response.json();
-            productListTBody.innerHTML = '';
+    // Evento change del input para buscar productos cuando el usuario seleccionó una categoria
+    inputSearch.addEventListener('keyup', function () {
+        productListTBody.innerHTML = "";
+        for (let productoFiltrado of productos) {
+            let title = productoFiltrado.title.toLowerCase();
+            if (title.indexOf(inputSearch.value.toLowerCase()) !== -1) {
+                productListTBody.innerHTML += `
+                <tr>
+                    <td>${productoFiltrado.title}</td>
+                    <td><a href="${productoFiltrado.permalink}" target="_blank">Ver Producto</a></td>
+                    <td><img src="${productoFiltrado.thumbnail}" alt="${productoFiltrado.title}" style="width: 50px;"></td>
+                    <td>$${productoFiltrado.price}</td>
+                    <td><button class="action-btn" onclick="saveProductBD('${productoFiltrado.id}')">Guardar en BD</button></td>
+                </tr>
+            `;
+            }
+        }
+    });
 
-            // Recorre los productos obtenidos y se crea una fila para cada producto en la tabla
-            data.results.forEach(product => {
-                const row = `
+
+}
+
+let productos = [];
+
+
+// Función para obtener la lista de categorías desde la API de MercadoLibre
+async function categoryList() {
+    try {
+        const response = await fetch('https://api.mercadolibre.com/sites/MLU');
+        const data = await response.json();
+
+        // Recorre las categorías obtenidas y crea un elemento <option> para cada una
+        data.categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+            document.getElementById('category-select').appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error al cargar las categorías:', error);
+    }
+}
+
+// Función para cargar la lista de productos desde la API de MercadoLibre para una categoría específica
+async function loadProductList(categoryId, productListTBody) {
+    try {
+        const response = await fetch(`https://api.mercadolibre.com/sites/MLU/search?category=${categoryId}`);
+        const data = await response.json();
+
+        productListTBody.innerHTML = '';
+
+        // Recorre los productos obtenidos y se crea una fila para cada producto en la tabla
+        data.results.forEach(product => {
+            const row = `
                 <tr>
                     <td>${product.title}</td>
                     <td><a href="${product.permalink}" target="_blank">Ver Producto</a></td>
@@ -49,14 +77,12 @@ window.onload = () => {
                 </tr>
             `;
 
-                productListTBody.innerHTML += row;
-
-            });
-        } catch (error) {
-            console.error('Error al cargar las categorías:', error);
-        }
-    };
-
+            productListTBody.innerHTML += row;
+            productos = data.results;
+        });
+    } catch (error) {
+        console.error('Error al cargar las categorías:', error);
+    }
 }
 
 // Función para guardar un producto específico en la BD, se envia por parametros el id del producto
@@ -83,8 +109,6 @@ async function saveProductBD(id) {
     } catch (error) {
         console.error('Error al guardar el producto:', error);
     }
-
-
 }
 
 // Función para obtener la información de un producto mediante su ID desde la API de MercadoLibre
@@ -96,4 +120,8 @@ async function getProduct(id) {
     } catch (error) {
         console.error('Error al cargar el producto:', error);
     }
+}
+
+function searchProducts() {
+
 }
